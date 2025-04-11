@@ -19,7 +19,7 @@ const Frase = () => {
           <b>Ki:</b> 60.000.000
         </p>
         <p>
-          <b>Descripcionn:</b> El protagonista de la serie, conocido por su gran
+          <b>Descripción:</b> El protagonista de la serie, conocido por su gran
           poder y personalidad amigable. Originalmente enviado a la Tierra como
           un infante volador con la misión de conquistarla. Sin embargo, el caer
           por un barranco le proporcionó un brutal golpe que si bien casi lo
