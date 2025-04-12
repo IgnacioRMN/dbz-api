@@ -11,6 +11,25 @@ function App() {
     consultarAPI();
   }, []);
 
+  const consultarAPI = async () => {
+    /* Solicitudes de datos a una API:
+    GET: devuelve datos
+    POST: crean un dato
+    PUT(total) o PATCH(parcial): modificar datos de un objeto
+    DELETE: borrar un dato
+     */
+    const respuestaAPI = await fetch(
+      "https://dragonball-api.com/api/characters/1"
+    );
+    console.log(respuestaAPI);
+    if (respuestaAPI.satus === 200) {
+      const datos = await respuestaAPI.json();
+      console.log(datos);
+    } else {
+      alert("Intente en unos momentos");
+    }
+  };
+
   return (
     <>
       <Container className="text-center my-4 d-flex flex-column align-items-center">
