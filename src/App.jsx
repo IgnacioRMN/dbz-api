@@ -1,17 +1,19 @@
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Button, Container } from "react-bootstrap";
+import { Button, Container, Spinner } from "react-bootstrap";
 import Frase from "./components/Frase";
 import { useEffect, useState } from "react";
 
 function App() {
   const [personaje, setPersonaje] = useState({});
+  const [mostrarSpinner, setMostrarSpinner] = useState(true);
 
   useEffect(() => {
     consultarAPI();
   }, []);
 
   const consultarAPI = async () => {
+    setMostrarSpinner(true);
     /* Solicitudes de datos a una API:
     GET: devuelve datos
     POST: crean un dato
@@ -26,6 +28,7 @@ function App() {
       const datos = await respuestaAPI.json();
       console.log(datos);
       setPersonaje(datos);
+      setMostrarSpinner(false);
     } else {
       alert("Intente en unos momentos");
     }
@@ -38,9 +41,13 @@ function App() {
   return (
     <>
       <Container className="text-center my-4 d-flex flex-column align-items-center">
-        <Frase personaje={personaje}></Frase>
+        {mostrarSpinner === true ? (
+          <Spinner animation="border" variant="info" />
+        ) : (
+          <Frase personaje={personaje}></Frase>
+        )}
 
-        <Button variant="warning" className="mt-3">
+        <Button variant="warning" className="mt-3" onClick={consultarAPI}>
           Obtener Personaje
         </Button>
       </Container>
