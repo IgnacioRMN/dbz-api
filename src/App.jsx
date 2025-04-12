@@ -19,21 +19,26 @@ function App() {
     DELETE: borrar un dato
      */
     const respuestaAPI = await fetch(
-      "https://dragonball-api.com/api/characters/1"
+      `https://dragonball-api.com/api/characters/${getRandomIntInclusive()}`
     );
     console.log(respuestaAPI);
-    if (respuestaAPI.satus === 200) {
+    if (respuestaAPI.status === 200) {
       const datos = await respuestaAPI.json();
       console.log(datos);
+      setPersonaje(datos);
     } else {
       alert("Intente en unos momentos");
     }
   };
 
+  const getRandomIntInclusive = () => {
+    return Math.floor(Math.random() * (40 - 1 + 1) + 1);
+  };
+
   return (
     <>
       <Container className="text-center my-4 d-flex flex-column align-items-center">
-        <Frase></Frase>
+        <Frase personaje={personaje}></Frase>
 
         <Button variant="warning" className="mt-3">
           Obtener Personaje

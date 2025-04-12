@@ -1,7 +1,7 @@
 import React from "react";
 import { Card, Row, Col, Button } from "react-bootstrap";
 
-function Frase() {
+const Frase = ({ personaje }) => {
   return (
     <Card
       className="my-1 shadow-lg rounded-4 overflow-hidden bg-dark text-white"
@@ -11,12 +11,12 @@ function Frase() {
       <Card.Img
         className="p-2"
         variant="top"
-        src="https://dragonball-api.com/characters/goku_normal.webp"
+        src={personaje.image}
         style={{ height: "250px", objectFit: "contain" }}
       />
       <Card.Body className="p-4 text-center">
         <Card.Title className="fs-3 fw-bold text-primary text-uppercase">
-          Goku
+          {personaje.name}
         </Card.Title>
 
         <Row className="mb-3 justify-content-center gap-2">
@@ -24,13 +24,13 @@ function Frase() {
             xs={6}
             className="w-auto badge text-light-emphasis bg-light-subtle border border-light-subtle rounded-pill"
           >
-            <strong>Raza:</strong> Saiyan
+            <strong>Raza:</strong> {personaje.race}
           </Col>
           <Col
             xs={6}
             className="w-auto  badge text-light-emphasis bg-light-subtle border border-light-subtle rounded-pill"
           >
-            <strong>Ki:</strong> 60.000.000
+            <strong>Ki:</strong> {personaje.ki}
           </Col>
         </Row>
 
@@ -42,18 +42,11 @@ function Frase() {
             textOverflow: "ellipsis",
           }}
         >
-          El protagonista de la serie, conocido por su gran poder y personalidad
-          amigable. Fue enviado a la Tierra para sobrevivir a la destrucción de
-          su planeta. Con el tiempo, se convertiría en el defensor del Universo
-          7, liderando a los Guerreros Z.
+          {personaje.description}
         </p>
-
-        <Button variant="outline-light" size="sm">
-          Ver más
-        </Button>
       </Card.Body>
     </Card>
   );
-}
+};
 
 export default Frase;
