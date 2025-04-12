@@ -13,23 +13,28 @@ function App() {
   }, []);
 
   const consultarAPI = async () => {
-    setMostrarSpinner(true);
-    /* Solicitudes de datos a una API:
+    try {
+      setMostrarSpinner(true);
+      /* Solicitudes de datos a una API:
     GET: devuelve datos
     POST: crean un dato
     PUT(total) o PATCH(parcial): modificar datos de un objeto
     DELETE: borrar un dato
      */
-    const respuestaAPI = await fetch(
-      `https://dragonball-api.com/api/characters/${getRandomIntInclusive()}`
-    );
-    console.log(respuestaAPI);
-    if (respuestaAPI.status === 200) {
-      const datos = await respuestaAPI.json();
-      console.log(datos);
-      setPersonaje(datos);
-      setMostrarSpinner(false);
-    } else {
+      const respuestaAPI = await fetch(
+        `https://dragonball-api.com/api/characters/${getRandomIntInclusive()}`
+      );
+      console.log(respuestaAPI);
+      if (respuestaAPI.status === 200) {
+        const datos = await respuestaAPI.json();
+        console.log(datos);
+        setPersonaje(datos);
+        setMostrarSpinner(false);
+      } else {
+        alert("Intente en unos momentos");
+      }
+    } catch (error) {
+      console.error(error);
       alert("Intente en unos momentos");
     }
   };
